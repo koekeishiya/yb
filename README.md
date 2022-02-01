@@ -1,6 +1,6 @@
 macOS Monterey window borders proof of concept
 
-Requires yabai version 4.0.0
+Requires yabai version 4.0.0 and jq (JSON processing tool)
 
 Build by running `make` or `make install` for an optimized build.
 
