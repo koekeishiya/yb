@@ -10,7 +10,7 @@ BINS           = $(BUILD_PATH)/yb
 all: clean $(BINS)
 
 install: BUILD_FLAGS=-std=c99 -Wall -DNDEBUG -O2 -fvisibility=hidden -mmacosx-version-min=10.13 -fno-objc-arc -arch x86_64 -arch arm64
-install: clean-build $(BINS)
+install: clean $(BINS)
 
 clean:
 	rm -rf $(BUILD_PATH)
