@@ -144,6 +144,7 @@ static void destroy_border(struct border *border)
 
     CGContextRelease(border->context);
     SLSReleaseWindow(g_connection, border->id);
+    free(border);
 }
 
 static EVENT_CALLBACK(EVENT_HANDLER_WINDOW_CREATED)
