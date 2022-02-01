@@ -7,16 +7,13 @@ BINS           = $(BUILD_PATH)/yb
 
 .PHONY: all clean install
 
-all: clean-build $(BINS)
+all: clean $(BINS)
 
 install: BUILD_FLAGS=-std=c99 -Wall -DNDEBUG -O2 -fvisibility=hidden -mmacosx-version-min=10.13 -fno-objc-arc -arch x86_64 -arch arm64
 install: clean-build $(BINS)
 
-clean-build:
+clean:
 	rm -rf $(BUILD_PATH)
-
-clean: clean-build
-	rm -f $(OSAX_SRC)
 
 $(BUILD_PATH)/yb: $(SRC)
 	mkdir -p $(BUILD_PATH)
