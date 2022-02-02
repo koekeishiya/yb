@@ -65,6 +65,7 @@ int main(int argc, char **argv)
     //
     // query yabai for all open windows and create borders
     //
+
     event_loop_post(&g_event_loop, WINDOW_QUERY_YABAI, NULL, 0, NULL);
 
     CFRunLoopRun();

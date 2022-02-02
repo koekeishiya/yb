@@ -82,11 +82,11 @@ static void ensure_same_space(struct border *border, uint32_t wid)
     if (!space_list) return;
 
     if (space_count > 1) {
-        uint64_t tags = 1 << 11;
-        SLSSetWindowTags(g_connection, border->id, &tags, 64);
+        uint64_t tag = 1ULL << 11;
+        SLSSetWindowTags(g_connection, border->id, &tag, 64);
     } else {
-        uint64_t tags = 1 << 11;
-        SLSClearWindowTags(g_connection, border->id, &tags, 64);
+        uint64_t tag = 1ULL << 11;
+        SLSClearWindowTags(g_connection, border->id, &tag, 64);
         SLSMoveWindowsToManagedSpace(g_connection, border->id_ref, space_list[0]);
     }
 
@@ -105,12 +105,15 @@ static struct border *create_border(uint32_t wid)
 
     // printf("frame: %.2f, %.2f, %.2f, %.2f\n", frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
 
+    uint64_t tag1 = 1ULL << 3;
+    uint64_t tag2 = 1ULL << 46;
+
     int window_level = 0;
     SLSGetWindowLevel(g_connection, wid, &window_level);
 
-    uint64_t tags = (1ULL << 3ULL) | (1ULL << 7ULL) | (1ULL << 9ULL);
     SLSNewWindow(g_connection, 2, 0, 0, border->region, &border->id);
-    SLSSetWindowTags(g_connection, border->id, &tags, 64);
+    SLSSetWindowTags(g_connection, border->id, &tag1, 64);
+    SLSSetWindowTags(g_connection, border->id, &tag2, 64);
     SLSSetWindowResolution(g_connection, border->id, 1.0f);
     SLSSetWindowOpacity(g_connection, border->id, 0);
     SLSSetWindowLevel(g_connection, border->id, window_level);
